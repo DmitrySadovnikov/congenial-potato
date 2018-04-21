@@ -29,10 +29,13 @@ use Mix.Config
 #
 #     import_config "#{Mix.env}.exs"
 
-config :rsvp, Rsvp.Repo,
-       adapter: Ecto.Adapters.Postgres,
-       database: "rspv",
-       username: "postgres",
-       password: "postgres"
+config  :rsvp,
+        Rsvp.Repo,
+        adapter: Ecto.Adapters.Postgres,
+        database: "rsvp",
+        username: "postgres",
+        password: "postgres"
 
-config :rsvp, ecto_repos: [Rsvp.Repo]
+config  :rsvp, ecto_repos: [Rsvp.Repo]
+
+import_config "#{Mix.env}.exs"
