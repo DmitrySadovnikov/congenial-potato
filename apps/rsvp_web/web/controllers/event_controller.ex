@@ -32,4 +32,10 @@ defmodule RsvpWeb.EventController do
       {:error, reasons} -> create conn, %{errors: reasons}
     end
   end
+
+  def reserve(conn, %{"id" => id, "reservation" => %{"quantity" => quantity}}) do
+    {:ok, event} = Rsvp.EventQueries.decrease_quantity(id, quantity)
+    RsvpWeb.EventChannel.send_payload(event)
+    redirect conn, to: event_path(conn, :show, id)
+  end
 end
